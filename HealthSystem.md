@@ -1,21 +1,11 @@
-/* 
-    ------------------- Code Monkey -------------------
-
-    Thank you for downloading this package
-    I hope you find it useful in your projects
-    If you have any questions let me know
-    Cheers!
-
-               unitycodemonkey.com
-    --------------------------------------------------
- */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthSystem {
+
+    private Character character;
 
     public event EventHandler OnHealthChanged;
     public event EventHandler OnDead;
@@ -40,7 +30,7 @@ public class HealthSystem {
     public int GetHealthAmount() {
         return health;
     }
-
+    //This is for lowering the health of the character
     public void Damage(int amount) {
         health -= amount;
         if (health < 0) {
@@ -53,6 +43,7 @@ public class HealthSystem {
         }
     }
 
+    //If the hp reaches to 0 this is make it that the character dies.
     public void Die() {
         if (OnDead != null) OnDead(this, EventArgs.Empty);
     }
@@ -61,6 +52,7 @@ public class HealthSystem {
         return health <= 0;
     }
 
+    //Heals the player
     public void Heal(int amount) {
         health += amount;
         if (health > healthMax) {
